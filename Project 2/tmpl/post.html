@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="twelve columns" style="margin-top: 2em;">
+            <h1>Yellow Brick Road <span style="color: red;">Beta</span></h1>
+            <p>A Second Generation Anonymous Marketplace</p>
+            <a href="/">index</a>
+            &mdash;
+            <a href="/post">post</a>
+            &mdash;
+            <a href="/logout">logout</a>
+            <hr>
+        </div>
+    </div>
+    <form action="/submit" method="post">
+        <div class="row">
+            <div class="two columns">&nbsp;</div>
+            <div class="eight columns">
+                <p>
+                    <strong>NOTE</strong>:
+                    Don't forget to encrypt your message!
+                    We're not responsible if law enforcement comes knocking...
+                </p>
+                {% with msgs = get_flashed_messages(with_categories=true) %}
+                    {% if msgs %}
+                        <ul>
+                            {% for cat, msg in msgs %}
+                                <li>{{msg}}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <label for="title">Title</label>
+                    <input id="title" class="u-full-width" type="text" name="title">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" class="u-full-width"></textarea>
+                    <select class="u-full-width" name="buy-or-sell" id="buy-or-sell">
+                        <option value="buy">Buying</option>
+                        <option value="sell">Selling</option>
+                    </select>
+                    <input class="button-primary" type="submit" value="post">
+                {% endwith %}
+            </div>
+            <div class="two columns">&nbsp;</div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

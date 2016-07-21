@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="twelve columns" style="margin-top: 2em;">
+            <h1>Yellow Brick Road <span style="color: red;">Beta</span></h1>
+            <p>A Second Generation Anonymous Marketplace</p>
+            <a href="/">index</a>
+            &mdash;
+            <a href="/post">post</a>
+            &mdash;
+            <a href="/logout">logout</a>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="one-half column">
+            <h2>Looking to Sell</h2>
+            {% for i in selling %}
+                <hr>
+                <strong>{{i.title|safe}}</strong>
+                <p style="word-wrap: break-word;">{{i.desc}}</p>
+            {% endfor %}
+        </div>
+        <div class="one-half column">
+            <h2>Looking to Buy</h2>
+            {% for i in buying %}
+                <hr>
+                <strong>{{i.title|safe}}</strong>
+                <p style="word-wrap: break-word;">{{i.desc}}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
